@@ -18,16 +18,12 @@ function sort_by_date(list){
 }
 
 function empty_screen(data){
-	if (document.body.innerHTML == "") {
-		display_data(data)
-	}
-	else{
 		document.body.innerHTML = "";
-	}
-	
+		
 }
 
 function display_data(data){
+	empty_screen();
 	let div, img, p, text;
 	for(let a of data){
 		//console.log(a);
@@ -61,7 +57,10 @@ request.onload = function(){
 
 	let data = raw.results;
 
-	document.body.addEventListener("click", empty_screen());
+	document.body.addEventListener("click", function(){
+		data = sort_by_date(data);
+		display_data(data);
+	});
 
 	//data = sort_by_date(data);
 
